@@ -1,4 +1,5 @@
-# def gcd(a, b):
+# import random
+# def gcdBasic(a, b):
 #     current_gcd = 1
 #     for d in range(2, min(a, b) + 1):
 #         if a % d == 0 and b % d == 0:
@@ -22,6 +23,17 @@ def gcd(a,b):
         return firstNumber
     else:
         return 0
+# def test():
+#     while True:
+#         a,b = random.randint(1,100000),random.randint(1,100000)
+#         c = gcd(a, b)
+#         d = gcdBasic(b, a)
+#         if c != d:
+#             print(f"[{a},{b}] --> {c} != {d}")
+#             break
+#         print(f"[{a},{b}] --> {c} = {d}")
+#
+# test()
 
 if __name__ == "__main__":
     a, b = map(int, input().split())
