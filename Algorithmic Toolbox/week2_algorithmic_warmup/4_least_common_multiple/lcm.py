@@ -2,20 +2,9 @@ import random
 
 
 def gcd(a, b):
-    firstNumber = a
-    secondNumber = b
-
-    while firstNumber != 0 and secondNumber != 0:
-        if firstNumber > secondNumber:
-            firstNumber = firstNumber % secondNumber
-        elif secondNumber > firstNumber:
-            secondNumber = secondNumber % firstNumber
-    if firstNumber == 0:
-        return secondNumber
-    elif secondNumber == 0:
-        return firstNumber
-    else:
-        return 0
+    while b != 0:
+        a, b = b, a % b
+    return a
 
 
 # def lcmBasic(a, b):
