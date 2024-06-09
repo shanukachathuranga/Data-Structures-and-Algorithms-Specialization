@@ -1,7 +1,12 @@
 def change(money):
-    # write your code here
+    changes = [10,5,1]
+    coin_count = 0
 
-    return money
+    for coin in changes:
+        coin_count += money // coin
+        money %= coin
+
+    return coin_count
 
 
 if __name__ == '__main__':
