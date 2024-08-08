@@ -1,6 +1,14 @@
 def optimal_summands(n):
     summands = []
-    # write your code here
+    current = 1
+    while n > 0:
+        if n - current > current:
+            summands.append(current)
+            n -= current
+            current += 1
+        else:
+            summands.append(n)
+            break
     return summands
 
 

@@ -1,18 +1,19 @@
-from itertools import permutations
+from functools import cmp_to_key
 
+def compare(a, b):
+    if a + b > b + a:
+        return -1
+    else:
+        return 1
 
-def largest_number_naive(numbers):
+def largest_number(numbers):
     numbers = list(map(str, numbers))
-
-    largest = 0
-
-    for permutation in permutations(numbers):
-        largest = max(largest, int("".join(permutation)))
-
-    return largest
-
+    # Sort numbers using the custom comparator
+    numbers.sort(key=cmp_to_key(compare))
+    # Concatenate sorted numbers to form the largest number
+    return ''.join(numbers)
 
 if __name__ == '__main__':
     _ = int(input())
-    input_numbers = input().split()
-    print(largest_number_naive(input_numbers))
+    input_numbers = list(map(int, input().split()))
+    print(largest_number(input_numbers))
