@@ -1,41 +1,38 @@
 from sys import stdin
 
 
+# weights = [20, 10, 40, 30, 50]
+# values = [100, 60, 140, 120, 160]
+# # [5,6,3.5,4,3.2]
+
+def maximum_value_sort(weights,values):
+    value_per_weight_list = []
+    for i in range(len(weights)):
+        value_per_weight_list.append([values[i]/weights[i],i])
+
+    value_per_weight_list = sorted(value_per_weight_list,reverse=True)
+    return value_per_weight_list
+
+
+
 def optimal_value(capacity, weights, values):
-    value = 0
-    count = 0
-    vlu_per_wgt = []
-    for w in weights:
-        vlu = values[count]/w
-        vlu_per_wgt.append([count,vlu])
-
+    sorted_value_per_weight_list = maximum_value_sort(weights,values)
     i = 0
-    while len(vlu_per_wgt) > i:
-        j = i+1
-        while j < len(vlu_per_wgt):
-            if vlu_per_wgt[j][1] > vlu_per_wgt[i][1]:
-                temp = vlu_per_wgt[j]
-                vlu_per_wgt[j] = vlu_per_wgt[i]
-                vlu_per_wgt[i] = temp
+    value = 0
+    while i < len(weights):
 
-            j += 1
+        if capacity <=0:
+            return value
 
-        i += 1
-
-        total_cap = capacity
-        k = 0
-        while k < len(vlu_per_wgt):
-            if weights[vlu_per_wgt[k][0]] < total_cap:
-                total_cap -= weights[vlu_per_wgt[k][0]]
-                value += vlu_per_wgt[k][1] * weights[vlu_per_wgt[k][0]]
-            else:
-                value += vlu_per_wgt[k][1] * total_cap
-                return value
-            k += 1
-
-
+        max_value = sorted_value_per_weight_list[i][0]
+        a = min(capacity,weights[sorted_value_per_weight_list[i][1]])
+        value += a * max_value
+        capacity -= a
+        i+=1
 
     return value
+
+# print(optimal_value(50,weights,values))
 
 
 if __name__ == "__main__":
