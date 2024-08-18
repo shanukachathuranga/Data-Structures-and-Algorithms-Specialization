@@ -11,10 +11,10 @@
 #     return -1
 
 def binary_search_improved(keys,query):
-    left, right, mid = 0,len(keys)-1,0
+    left, right= 0,len(keys)-1
 
     while left <= right:
-        mid = (left+right) >> 2
+        mid = (left+right) >> 1
         if keys[mid] == query:
             return mid
         elif keys[mid] < query:
