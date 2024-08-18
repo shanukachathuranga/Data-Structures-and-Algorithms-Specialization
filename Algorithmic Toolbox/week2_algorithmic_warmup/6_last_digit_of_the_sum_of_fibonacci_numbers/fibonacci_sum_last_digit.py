@@ -13,18 +13,19 @@ import random
 #     return _sum % 10
 
 def fibonacci_sum_last_digit(n):
-    if n <= 1:
-        return n
+    pisano_period = 60
 
-    previous = 0
-    current  = 1
-    sum = 1
+    fib_last_digits = [0, 1]
+    for i in range(2, pisano_period):
+        fib_last_digits.append((fib_last_digits[-1] + fib_last_digits[-2]) % 10)
 
-    for _ in range(n - 1):
-        previous, current = current%10, (previous + current)%10
-        sum += current
+    n = (n + 2) % pisano_period
 
-    return sum % 10
+    if n == 0:
+        return 9
+    else:
+        return (fib_last_digits[n] - 1) % 10
+
 
 # def test():
 #     while True:
