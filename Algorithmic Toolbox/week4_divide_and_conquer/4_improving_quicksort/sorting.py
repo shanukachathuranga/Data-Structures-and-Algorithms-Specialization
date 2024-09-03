@@ -8,9 +8,9 @@ def swap(array, val1, val2):
 
 
 def partition3(array, left, right):
+    compare_value = array[left]
     m1 = left
     m2 = left
-    compare_value = array[left]
 
     for i in range(left + 1, right + 1):
         if array[i] < compare_value:
@@ -19,11 +19,11 @@ def partition3(array, left, right):
             m2 += 1
             swap(array, m1, m2)
         elif array[i] == compare_value:
-            m2 += 1
-            swap(array, i, m2)
+            m1 += 1
+            swap(array, i, m1)
 
-    swap(array, left, m1)
-    return m1, m2
+    swap(array, left, m2)
+    return m2, m1
 
 
 def randomized_quick_sort(array, left, right):

@@ -1,23 +1,20 @@
 def binary_search(keys, query):
     left, right = 0, len(keys) - 1
     result = -1
-    loop = 0
+
     while left <= right:
-        loop+=1
-        # print(f"loop: {loop}")
         mid = (left + right) // 2
-        # print(f"mid: {mid}")
-        # midValue = keys[mid]
+
         if keys[mid] == query:
-            while mid>0 and keys[mid-1] == query:
+            # Move to the left to find the first occurrence
+            while mid > 0 and keys[mid - 1] == query:
                 mid -= 1
-                # print(f"mid: {mid}")
             result = mid
             break
         elif keys[mid] < query:
-            left = mid+1
+            left = mid + 1
         else:
-            right = mid-1
+            right = mid - 1
 
     return result
 
